@@ -14,7 +14,7 @@ import {
   Box,
 } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { UserContext } from "../App";
+import { UserContext } from "contexts/contexts";
 import { useContext, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";

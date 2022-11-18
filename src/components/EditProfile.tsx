@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { UserContext } from "../App";
+import { AlertContext, UserContext } from "contexts/contexts";
 import { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { updateUserProfile } from "../utils";
@@ -19,15 +19,8 @@ import { styles } from "styles/styles";
 export const EditProfile = () => {
   const navigate = useNavigate();
 
-  const {
-    isAuthenticated,
-    setIsAuthenticated,
-    userData,
-    setUserData,
-    alertMessage,
-    setAlertMessage,
-    setIsAlertSuccessType,
-  } = useContext(UserContext);
+  const { isAuthenticated, setIsAuthenticated, userData, setUserData } = useContext(UserContext);
+  const { alertMessage, setAlertMessage, setIsAlertSuccessType } = useContext(AlertContext);
 
   const [firstName, setFirstName] = useState(userData?.name?.first);
   const [lastName, setLastName] = useState(userData?.name?.last);

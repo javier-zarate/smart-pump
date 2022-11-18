@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { logoutUser } from "../utils";
-import { UserContext } from "../App";
+import { AlertContext, UserContext } from "contexts/contexts";
 import InvertColorsTwoToneIcon from "@mui/icons-material/InvertColorsTwoTone";
 import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "@mui/icons-material/Login";
@@ -28,13 +28,8 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { styles } from "styles/styles";
 
 export const NavBar = () => {
-  const {
-    isAuthenticated,
-    setIsAuthenticated,
-    setUserData,
-    setAlertMessage,
-    setIsAlertSuccessType,
-  } = useContext(UserContext);
+  const { isAuthenticated, setIsAuthenticated, setUserData } = useContext(UserContext);
+  const { setAlertMessage, setIsAlertSuccessType } = useContext(AlertContext);
 
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

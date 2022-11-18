@@ -14,8 +14,9 @@ import {
   Switch,
   Alert,
 } from "@mui/material";
-import { UserContext } from "../App";
+import { AlertContext, UserContext } from "contexts/contexts";
 import { useContext, useState } from "react";
+import { AddressForm } from "./AddressForm";
 import { Navigate, useNavigate } from "react-router-dom";
 import { isEmailValid, register } from "../utils";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -23,14 +24,8 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { styles } from "styles/styles";
 
 export const Register = () => {
-  const {
-    isAuthenticated,
-    setIsAuthenticated,
-    setUserData,
-    alertMessage,
-    setAlertMessage,
-    setIsAlertSuccessType,
-  } = useContext(UserContext);
+  const { isAuthenticated, setIsAuthenticated, setUserData } = useContext(UserContext);
+  const { alertMessage, setAlertMessage, setIsAlertSuccessType } = useContext(AlertContext);
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
@@ -41,6 +36,7 @@ export const Register = () => {
   const [eyeColor, setEyeColor] = useState("");
   const [company, setCompany] = useState("");
   const [phone, setPhone] = useState("");
+
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -127,55 +123,16 @@ export const Register = () => {
     }
   };
 
-  const addressForm = (
-    <>
-      <Grid item>
-        <Typography variant="h5" color="primary" textAlign="center" gutterBottom>
-          Address
-        </Typography>
-        <Grid container direction="row" justifyContent="center" alignItems="center" spacing={2}>
-          <Grid item>
-            <InputLabel>Street</InputLabel>
-            <TextField
-              label="Street"
-              value={street}
-              onChange={(e) => setStreet(e.target.value)}
-              size="small"
-              sx={{ ...styles.inputFields }}
-            />
-            <InputLabel>City</InputLabel>
-            <TextField
-              label="City"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              size="small"
-              sx={{ ...styles.inputFields }}
-            />
-          </Grid>
-
-          <Grid item>
-            <InputLabel>State</InputLabel>
-            <TextField
-              label="State"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              size="small"
-              sx={{ ...styles.inputFields }}
-            />
-
-            <InputLabel>Zipcode</InputLabel>
-            <TextField
-              label="ZipCode"
-              value={zipcode}
-              onChange={(e) => setZipcode(e.target.value)}
-              size="small"
-              sx={{ ...styles.inputFields }}
-            />
-          </Grid>
-        </Grid>
-      </Grid>
-    </>
-  );
+  const AddressFormProps = {
+    street,
+    setStreet,
+    city,
+    setCity,
+    state,
+    setState,
+    zipcode,
+    setZipcode,
+  };
 
   return (
     <>
@@ -285,7 +242,7 @@ export const Register = () => {
                       sx={{ ...styles.inputFields }}
                     />
                   </Grid>
-                  {showAddressForm && addressForm}
+                  {showAddressForm && <AddressForm {...AddressFormProps} />}
                 </Grid>
                 <Grid container direction="column" textAlign="center">
                   <Grid item>

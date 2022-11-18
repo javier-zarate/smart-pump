@@ -14,24 +14,18 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { UserContext } from "../App";
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { AlertContext, UserContext } from "contexts/contexts";
 import { isEmailValid, login } from "../utils";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { styles } from "styles/styles";
 
 export const Login = () => {
-  const {
-    isAuthenticated,
-    setIsAuthenticated,
-    setUserData,
-    setAlertMessage,
-    alertMessage,
-    isAlertSuccessType,
-    setIsAlertSuccessType,
-  } = useContext(UserContext);
+  const { isAuthenticated, setIsAuthenticated, setUserData } = useContext(UserContext);
+  const { alertMessage, setAlertMessage, isAlertSuccessType, setIsAlertSuccessType } =
+    useContext(AlertContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -74,7 +68,7 @@ export const Login = () => {
 
       login({
         email: formattedEmail,
-        password: password,
+        password,
         setIsAuthenticated,
         setUserData,
         setAlertMessage,
