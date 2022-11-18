@@ -40,6 +40,25 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 - Create New Users
 - Edit Profile Attributes
 
+## Technologies
+
+---
+
+- [React](https://reactjs.org/)
+- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+- [Javascript](https://www.javascript.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [MaterialUI](https://mui.com/)
+- [Express](https://expressjs.com/)
+- [Vite](https://vitejs.dev/)
+- [Axios](https://www.npmjs.com/package/axios)
+- [react-router](https://v5.reactrouter.com/)
+- [NodeJS](http://nodejs.org/)
+- [LowDB](https://github.com/typicode/lowdb)
+- [NPM](https://www.npmjs.com/)
+
+---
+
 # Simple Developer Exercise
 
 The savvy cats over at SMART Pump would like to be able to allow users to login to their account, check their balance and update their personal details. Write a simple web application (API and UI) using node.js and lowdb that lets users accomplish those tasks.
