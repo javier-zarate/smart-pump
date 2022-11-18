@@ -19,9 +19,7 @@ import { useContext, useState } from "react";
 import { AddressForm } from "./AddressForm";
 import { Navigate, useNavigate } from "react-router-dom";
 import { isEmailValid, register } from "../utils";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { styles } from "styles/styles";
+import { Icon, styles } from "styles";
 
 export const Register = () => {
   const { isAuthenticated, setIsAuthenticated, setUserData } = useContext(UserContext);
@@ -201,7 +199,7 @@ export const Register = () => {
                         endAdornment: (
                           <InputAdornment position="end">
                             <IconButton onClick={() => setShowPassword(!showPassword)}>
-                              {!showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                              {!showPassword ? <Icon.VisibilityIcon /> : <Icon.VisibilityOffIcon />}
                             </IconButton>
                           </InputAdornment>
                         ),

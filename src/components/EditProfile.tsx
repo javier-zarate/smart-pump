@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   CardMedia,
-  colors,
   Grid,
   InputLabel,
   TextField,
@@ -14,7 +13,7 @@ import { AlertContext, UserContext } from "contexts/contexts";
 import { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { updateUserProfile } from "../utils";
-import { styles } from "styles/styles";
+import { styles } from "styles";
 
 export const EditProfile = () => {
   const navigate = useNavigate();

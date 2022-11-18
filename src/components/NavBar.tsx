@@ -20,12 +20,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { logoutUser } from "../utils";
 import { AlertContext, UserContext } from "contexts/contexts";
-import InvertColorsTwoToneIcon from "@mui/icons-material/InvertColorsTwoTone";
-import HomeIcon from "@mui/icons-material/Home";
-import LoginIcon from "@mui/icons-material/Login";
-import LogoutIcon from "@mui/icons-material/Logout";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import { styles } from "styles/styles";
+import { Icon, styles } from "styles";
 
 export const NavBar = () => {
   const { isAuthenticated, setIsAuthenticated, setUserData } = useContext(UserContext);
@@ -70,7 +65,7 @@ export const NavBar = () => {
         <ListItem disablePadding onClick={handleHomeClick}>
           <ListItemButton>
             <ListItemIcon>
-              <HomeIcon style={{ color: colors.grey["200"] }} />
+              <Icon.HomeIcon style={{ color: colors.grey["200"] }} />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItemButton>
@@ -79,7 +74,7 @@ export const NavBar = () => {
           <ListItem disablePadding onClick={handleLogout}>
             <ListItemButton>
               <ListItemIcon>
-                <LogoutIcon style={{ color: colors.grey["200"] }} />
+                <Icon.LogoutIcon style={{ color: colors.grey["200"] }} />
               </ListItemIcon>
               <ListItemText primary="Logout" />
             </ListItemButton>
@@ -89,7 +84,7 @@ export const NavBar = () => {
             <ListItem disablePadding onClick={handleLogin}>
               <ListItemButton>
                 <ListItemIcon>
-                  <LoginIcon style={{ color: colors.grey["200"] }} />
+                  <Icon.LoginIcon style={{ color: colors.grey["200"] }} />
                 </ListItemIcon>
                 <ListItemText primary="Login" />
               </ListItemButton>
@@ -97,7 +92,7 @@ export const NavBar = () => {
             <ListItem disablePadding onClick={handleRegister}>
               <ListItemButton>
                 <ListItemIcon>
-                  <PersonAddIcon style={{ color: colors.grey["200"] }} />
+                  <Icon.PersonAddIcon style={{ color: colors.grey["200"] }} />
                 </ListItemIcon>
                 <ListItemText primary="Register" />
               </ListItemButton>
@@ -114,7 +109,7 @@ export const NavBar = () => {
         <Grid item>
           <Toolbar>
             <IconButton name="Home" onClick={handleHomeClick} style={{ color: colors.grey["200"] }}>
-              <InvertColorsTwoToneIcon />
+              <Icon.InvertColorsTwoToneIcon />
               <Typography> Smart Pump</Typography>
             </IconButton>
           </Toolbar>

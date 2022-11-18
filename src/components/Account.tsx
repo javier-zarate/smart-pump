@@ -16,17 +16,8 @@ import {
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { UserContext } from "contexts/contexts";
 import { useContext, useState } from "react";
-import PersonIcon from "@mui/icons-material/Person";
-import EmailIcon from "@mui/icons-material/Email";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import HomeIcon from "@mui/icons-material/Home";
-import BusinessIcon from "@mui/icons-material/Business";
-import CakeIcon from "@mui/icons-material/Cake";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Navigate, useNavigate } from "react-router-dom";
-import { styles } from "styles/styles";
+import { Icon, styles } from "styles";
 
 export const Account = () => {
   const navigate = useNavigate();
@@ -68,7 +59,7 @@ export const Account = () => {
                 >
                   <ListItemButton>
                     <ListItemIcon>
-                      <PersonIcon />
+                      <Icon.PersonIcon />
                     </ListItemIcon>
                     <ListItemText primary="Name" />
                     <Typography
@@ -77,7 +68,7 @@ export const Account = () => {
                   </ListItemButton>
                   <ListItemButton>
                     <ListItemIcon>
-                      <EmailIcon />
+                      <Icon.EmailIcon />
                     </ListItemIcon>
                     <ListItemText primary="Email" />
                     <Typography>{userData?.email}</Typography>
@@ -85,7 +76,7 @@ export const Account = () => {
                   {!!userData?.phone && (
                     <ListItemButton>
                       <ListItemIcon>
-                        <LocalPhoneIcon />
+                        <Icon.LocalPhoneIcon />
                       </ListItemIcon>
                       <ListItemText primary="Phone Number" />
                       <Typography>{userData?.phone}</Typography>
@@ -94,7 +85,7 @@ export const Account = () => {
                   {!!userData?.address && (
                     <ListItemButton>
                       <ListItemIcon>
-                        <HomeIcon />
+                        <Icon.HomeIcon />
                       </ListItemIcon>
                       <ListItemText primary="Address" />
                       <Typography display="block">{userData?.address}</Typography>
@@ -103,7 +94,7 @@ export const Account = () => {
                   {!!userData?.company && (
                     <ListItemButton>
                       <ListItemIcon>
-                        <BusinessIcon />
+                        <Icon.BusinessIcon />
                       </ListItemIcon>
                       <ListItemText primary="Company" />
                       <Typography>{userData?.company}</Typography>
@@ -112,7 +103,7 @@ export const Account = () => {
                   {!!userData?.age && (
                     <ListItemButton>
                       <ListItemIcon>
-                        <CakeIcon />
+                        <Icon.CakeIcon />
                       </ListItemIcon>
                       <ListItemText primary="Age" />
                       <Typography>{userData?.age}</Typography>
@@ -121,7 +112,7 @@ export const Account = () => {
                   {!!userData?.eyecolor && (
                     <ListItemButton>
                       <ListItemIcon>
-                        <VisibilityIcon />
+                        <Icon.VisibilityIcon />
                       </ListItemIcon>
                       <ListItemText primary="Eye Color" />
                       <Typography>{userData?.eyecolor}</Typography>
@@ -129,7 +120,7 @@ export const Account = () => {
                   )}
                   <ListItemButton onClick={handleClick}>
                     <ListItemIcon>
-                      <AccountBalanceIcon />
+                      <Icon.AccountBalanceIcon />
                     </ListItemIcon>
                     <ListItemText primary="Balance" />
                     {open ? <ExpandLess /> : <ExpandMore />}
@@ -138,7 +129,7 @@ export const Account = () => {
                     <List component="div" disablePadding>
                       <ListItemButton sx={{ pl: 4 }}>
                         <ListItemIcon>
-                          <AttachMoneyIcon />
+                          <Icon.AttachMoneyIcon />
                         </ListItemIcon>
                         <ListItemText primary="Account Balance" />
                         <Typography>{userData?.balance}</Typography>

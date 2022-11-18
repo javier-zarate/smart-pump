@@ -18,9 +18,7 @@ import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { AlertContext, UserContext } from "contexts/contexts";
 import { isEmailValid, login } from "../utils";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { styles } from "styles/styles";
+import { Icon, styles } from "styles";
 
 export const Login = () => {
   const { isAuthenticated, setIsAuthenticated, setUserData } = useContext(UserContext);
@@ -140,7 +138,7 @@ export const Login = () => {
                         endAdornment: (
                           <InputAdornment position="end">
                             <IconButton onClick={() => setShowPassword(!showPassword)}>
-                              {!showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                              {!showPassword ? <Icon.VisibilityIcon /> : <Icon.VisibilityOffIcon />}
                             </IconButton>
                           </InputAdornment>
                         ),

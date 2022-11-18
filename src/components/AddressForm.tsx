@@ -1,5 +1,5 @@
 import { Grid, InputLabel, TextField, Typography } from "@mui/material";
-import { styles } from "styles/styles";
+import { styles } from "styles";
 
 interface AddressFormProps {
   street: string;

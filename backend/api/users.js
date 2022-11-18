@@ -46,7 +46,7 @@ router.post(
 
       let user = users.find((u) => u.email == email);
       if (user) {
-        return res.status(400).json({ message: "User Aleready Exists" });
+        return res.status(400).json({ message: "User Already Exists" });
       }
 
       const id = uuidv4();
@@ -122,7 +122,7 @@ router.post(
 
       let userFound = users.find((u) => u.email == req.body.email);
       if (userFound && req.body.id !== userFound._id) {
-        return res.status(400).json({ message: "User Aleready Exists" });
+        return res.status(400).json({ message: "User Already Exists" });
       }
 
       let user = db.data.users.find((u) => u._id === id);
