@@ -1,33 +1,37 @@
 # Getting Started
 
-Clone the repo
-
 ```
-$ git clone https://github.com/javier-zarate/smart-pump.git
-```
+# Go ahead and copy and paste this code block!
 
-Go to the Project Directory
+# Clone the repo
+git clone https://github.com/javier-zarate/smart-pump.git
 
-```
-$ cd smart-pump
-```
+# Go to the Project Directory
+cd smart-pump
 
-Install Node Modules
+# Install Node Modules
+npm install
 
-```
-$ npm install
-```
-
-Hit the run command and get started!
-
-```
+# Run Project
 npm run start
 ```
+
+### Important Notes
+
+- using node version 14
+
+- On first **npm run start** may take up to a minute to load project
+
+  - On subsequent runs project loads instantly
+
+- On Linux there appear an error message with Vite but project still runs
+
+---
 
 Boom You are up and running.
 Navigate to [http://localhost:3000](http://localhost:3000)
 
-## Actions
+### Actions
 
 - Login with existing user credentials
 
