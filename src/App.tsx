@@ -45,10 +45,8 @@ export const App = () => {
       >
         <BrowserRouter>
           <Grid item xs>
-            {!!alertMessage && <Alert severity="error">{alertMessage}</Alert>}
             <Grid container alignContent="center" justifyContent="center" alignItems="center">
               <NavBar />
-
               <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/login" element={<Login />} />
@@ -63,30 +61,3 @@ export const App = () => {
     </Grid>
   );
 };
-
-// const styles = {
-//   body: {
-//     alignItems: "center",
-//     padding: "1rem",
-//     overflow: "auto",
-//   },
-//   root: {
-//     display: "flex",
-//     flexFlow: "column",
-//     // width: "inherit",
-//     // height: "inherit",
-//     // backgroundAttachment: "fixed",
-//     // backgroundRepeat: "no-repeat",
-//     // backgroundSize: "cover",
-//     // background: "linear-gradient(to top left, #1b76bc, #fff)",
-//     // transition: "all 225ms ease-in-out",
-//   },
-// };
-
-// const useClasses = makeClasses({
-//   body: {
-//     alignItems: "center",
-//     padding: "1rem",
-//     overflow: "auto",
-//   },
-// });

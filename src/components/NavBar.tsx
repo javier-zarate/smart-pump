@@ -24,7 +24,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import { color } from "@mui/system";
 
 export const NavBar = () => {
   const { isAuthenticated, setIsAuthenticated, setUserData } = useContext(UserContext);
@@ -56,7 +55,11 @@ export const NavBar = () => {
   };
 
   const drawerOptions = (
-    <Box sx={{ width: "auto", color: colors.grey["200"] }} role="presentation">
+    <Box
+      sx={{ width: "auto", color: colors.grey["200"] }}
+      role="presentation"
+      onKeyDown={() => toggleDrawer()}
+    >
       <List>
         <ListItem disablePadding onClick={handleHomeClick}>
           <ListItemButton>
@@ -104,8 +107,10 @@ export const NavBar = () => {
       <Grid container direction="row" justifyContent="space-between" alignItems="center">
         <Grid item>
           <Toolbar>
-            <InvertColorsTwoToneIcon />
-            <Typography>Smart Pump</Typography>
+            <IconButton name="Home" onClick={handleHomeClick} style={{ color: colors.grey["200"] }}>
+              <InvertColorsTwoToneIcon />
+              <Typography> Smart Pump</Typography>
+            </IconButton>
           </Toolbar>
         </Grid>
         <Grid item>

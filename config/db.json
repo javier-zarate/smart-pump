@@ -56,7 +56,28 @@
       "salt": "$2a$05$EJo9tDb7aHzAYGiK20.pfO",
       "password": "$2a$05$EJo9tDb7aHzAYGiK20.pfOndA4CXAvHCcaBWqj96BnV9J/2kxAac6",
       "phone": "9091231234",
-      "address": "1234 Paint ln, Canvas, UT 12345"
+      "address": "1234 Paint ln, Canvas, UT 12345",
+      "eyeColor": "brown"
+    },
+    {
+      "_id": "d2a4b443-d63a-4a92-bc7d-cd5cec63fa35",
+      "guid": "b96dbe02-a830-4e06-a7e1-d93afa99633b",
+      "isActive": true,
+      "balance": "$5,991,626.91",
+      "picture": "https://robohash.org/$2a$05$WGljBkYTqd1hvvCCYGKLWevNDULRFYbUKXjGkVhhsuZ2FUTrF5R.e.png",
+      "age": "36",
+      "eyecolor": "Green",
+      "name": {
+        "first": "James",
+        "last": "Bond"
+      },
+      "company": "MI6",
+      "email": "007@pewpew.com",
+      "salt": "$2a$05$WGljBkYTqd1hvvCCYGKLWe",
+      "password": "$2a$05$WGljBkYTqd1hvvCCYGKLWevNDULRFYbUKXjGkVhhsuZ2FUTrF5R.e",
+      "phone": "1231231234",
+      "address": "123 Spectre ct Casino Royal, AZ 00007",
+      "eyeColor": "Green"
     }
   ]
 }

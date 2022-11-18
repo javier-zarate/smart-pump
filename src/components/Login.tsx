@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -14,7 +15,7 @@ import {
 } from "@mui/material";
 import { UserContext } from "App";
 import { useContext, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { login } from "utils";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -22,38 +23,37 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 export const Login = () => {
   const { isAuthenticated, setIsAuthenticated, setUserData, setAlertMessage, alertMessage } =
     useContext(UserContext);
-  const navigate = useNavigate();
 
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleEmail = (value: string) => {
     if (!!alertMessage) setAlertMessage("");
-    setEmailValue(value);
+    setEmail(value);
   };
 
   const handlePassword = (value: string) => {
     if (!!alertMessage) setAlertMessage("");
-    setPasswordValue(value);
+    setPassword(value);
   };
 
   const handleLogin = async () => {
     try {
-      const email = emailValue.toLowerCase().trim();
+      const formattedEmail = email.toLowerCase().trim();
       const emailValidator = /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/;
 
-      if (!emailValidator.test(email)) {
+      if (!emailValidator.test(formattedEmail)) {
         setAlertMessage("Please enter a valid email.");
         return;
       }
 
-      if (passwordValue.length < 8) {
+      if (password.length < 8) {
         setAlertMessage("Password must be at least 8 characters long.");
         return;
       }
 
-      login({ email, password: passwordValue, setIsAuthenticated, setUserData });
+      login({ email, password: password, setIsAuthenticated, setUserData, setAlertMessage });
     } catch (err) {
       console.error("[Error login in]:", err);
     }
@@ -73,9 +73,8 @@ export const Login = () => {
               <CardContent>
                 <CardMedia
                   component="img"
-                  height="200"
-                  width="200"
                   image={"/assets/logo.png"}
+                  height="200"
                   sx={{ objectFit: "contain", marginBottom: "2em" }}
                 />
                 <Box
@@ -86,10 +85,15 @@ export const Login = () => {
                   sx={{ "& .MuiTextField-root": { width: "30ch" } }}
                 >
                   <div style={{ width: "15rem" }}>
+                    {!!alertMessage && (
+                      <Alert severity="error" onClose={() => setAlertMessage("")}>
+                        {alertMessage}
+                      </Alert>
+                    )}
                     <InputLabel>Email</InputLabel>
                     <TextField
                       label="Email"
-                      value={emailValue}
+                      value={email}
                       onChange={(e) => handleEmail(e.target.value)}
                       size="small"
                       sx={{ ...styles.inputFields }}
@@ -97,7 +101,7 @@ export const Login = () => {
                     <InputLabel>Password</InputLabel>
                     <TextField
                       label="Password"
-                      value={passwordValue}
+                      value={password}
                       onChange={(e) => handlePassword(e.target.value)}
                       size="small"
                       sx={{ ...styles.inputFields }}

@@ -15,7 +15,6 @@ import {
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { UserContext } from "App";
 import { useContext, useState } from "react";
-import { makeClasses } from "utils";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
@@ -28,7 +27,6 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Navigate, useNavigate } from "react-router-dom";
 
 export const Account = () => {
-  const { css } = useClasses(null);
   const navigate = useNavigate();
 
   const { isAuthenticated, userData } = useContext(UserContext);
@@ -159,30 +157,6 @@ export const Account = () => {
     </>
   );
 };
-
-const useClasses = makeClasses({
-  body: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: "1em",
-  },
-  mainCard: {
-    margin: 0,
-    maxWidth: 800,
-    width: "100%",
-  },
-  innerCard: {
-    border: `2px solid ${colors.grey["400"]}`,
-    backgroundColor: colors.grey["100"],
-  },
-  form: {
-    width: "15rem",
-  },
-  redirect: {
-    marginTop: "0.5em",
-    fontSize: 12,
-  },
-});
 
 const styles = {
   inputFields: {

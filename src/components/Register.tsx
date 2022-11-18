@@ -9,8 +9,10 @@ import {
   Link,
   TextField,
   Typography,
-  Box,
   Button,
+  FormControlLabel,
+  Switch,
+  Alert,
 } from "@mui/material";
 import { UserContext } from "App";
 import { useContext, useState } from "react";
@@ -26,48 +28,124 @@ export const Register = () => {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
   const [eyeColor, setEyeColor] = useState("");
   const [company, setCompany] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zipcode, setZipcode] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
+  const [showAddressForm, setShowAddressForm] = useState(false);
 
   const handleEmail = (value: string) => {
     if (!!alertMessage) setAlertMessage("");
-    setEmailValue(value);
+    setEmail(value);
   };
 
   const handleRegister = async () => {
     try {
-      const email = emailValue.toLowerCase().trim();
+      const formattedEmail = email.toLowerCase().trim();
       const emailValidator = /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/;
 
-      if (!emailValidator.test(email)) {
+      if (!firstName || !lastName || !email || !password) {
+        setAlertMessage("Must provide first name, last name, email, and password");
+        return;
+      }
+
+      if (!emailValidator.test(formattedEmail)) {
         setAlertMessage("Please enter a valid email.");
         return;
+      }
+
+      if (password.length < 8) {
+        setAlertMessage("Password must be at least 8 characters long.");
+        return;
+      }
+
+      let address = "";
+
+      if (showAddressForm) {
+        if (!street || !city || !state || !zipcode) {
+          setAlertMessage("If adding address please fill out all inputs.");
+          return;
+        }
+        address = `${street} ${city}, ${state} ${zipcode}`;
       }
 
       register({
         firstName,
         lastName,
-        email,
-        password: passwordValue,
-        phone: phoneNumber,
+        email: formattedEmail,
+        password,
+        phone,
         company,
         age,
         eyeColor,
         address,
         setIsAuthenticated,
         setUserData,
+        setAlertMessage,
       });
     } catch (err) {
       console.error("[Error registering user]", err);
+      console.log({ err });
     }
   };
+
+  const addressForm = (
+    <>
+      <Grid item>
+        <Typography variant="h5" color="primary" textAlign="center" gutterBottom>
+          Address
+        </Typography>
+        <Grid container direction="row" justifyContent="center" alignItems="center" spacing={2}>
+          <Grid item>
+            <InputLabel>Street</InputLabel>
+            <TextField
+              label="Street"
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+              size="small"
+              sx={{ ...styles.inputFields }}
+            />
+            <InputLabel>City</InputLabel>
+            <TextField
+              label="City"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              size="small"
+              sx={{ ...styles.inputFields }}
+            />
+          </Grid>
+
+          <Grid item>
+            <InputLabel>State</InputLabel>
+            <TextField
+              label="State"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              size="small"
+              sx={{ ...styles.inputFields }}
+            />
+
+            <InputLabel>Zipcode</InputLabel>
+            <TextField
+              label="ZipCode"
+              value={zipcode}
+              onChange={(e) => setZipcode(e.target.value)}
+              size="small"
+              sx={{ ...styles.inputFields }}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+    </>
+  );
 
   return (
     <>
@@ -81,6 +159,11 @@ export const Register = () => {
             </Typography>
             <Card variant="outlined" sx={{ ...styles.innerCard }}>
               <CardContent>
+                {!!alertMessage && (
+                  <Alert severity="error" onClose={() => setAlertMessage("")}>
+                    {alertMessage}
+                  </Alert>
+                )}
                 <Grid
                   container
                   direction="row"
@@ -110,7 +193,7 @@ export const Register = () => {
                     <InputLabel>Email</InputLabel>
                     <TextField
                       label="email"
-                      value={emailValue}
+                      value={email}
                       onChange={(e) => handleEmail(e.target.value)}
                       size="small"
                       sx={{ ...styles.inputFields }}
@@ -118,8 +201,8 @@ export const Register = () => {
                     <InputLabel>Password</InputLabel>
                     <TextField
                       label="Password"
-                      value={passwordValue}
-                      onChange={(e) => setPasswordValue(e.target.value)}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       size="small"
                       sx={{ ...styles.inputFields }}
                       type={showPassword ? "text" : "password"}
@@ -162,30 +245,34 @@ export const Register = () => {
                     <InputLabel>Phone Number</InputLabel>
                     <TextField
                       label="Phone Number"
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
                       size="small"
                       sx={{ ...styles.inputFields }}
                     />
                   </Grid>
+                  {showAddressForm && addressForm}
+                </Grid>
+                <Grid container direction="column" textAlign="center">
                   <Grid item>
-                    <InputLabel>Address</InputLabel>
-                    <TextField
-                      label="Address"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                      size="small"
-                      sx={{ ...styles.inputFields }}
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          checked={showAddressForm}
+                          onChange={() => setShowAddressForm((prev) => !prev)}
+                        />
+                      }
+                      label="Add Address"
                     />
-                    <Box textAlign="center">
-                      <Button variant="contained" onClick={handleRegister} fullWidth>
-                        Register
-                      </Button>
-                      <Typography> Already have an account?</Typography>
-                      <Link href="/login" rel="noopener">
-                        <Typography>Login here</Typography>
-                      </Link>
-                    </Box>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="contained" onClick={handleRegister}>
+                      Register
+                    </Button>
+                    <Typography> Already have an account?</Typography>
+                    <Link href="/login" rel="noopener">
+                      <Typography>Login here</Typography>
+                    </Link>
                   </Grid>
                 </Grid>
               </CardContent>

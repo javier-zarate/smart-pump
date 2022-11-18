@@ -28,9 +28,16 @@ interface LoginProps {
   password: string;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   setUserData: React.Dispatch<any>;
+  setAlertMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const login = async ({ email, password, setIsAuthenticated, setUserData }: LoginProps) => {
+export const login = async ({
+  email,
+  password,
+  setIsAuthenticated,
+  setUserData,
+  setAlertMessage,
+}: LoginProps) => {
   try {
     const data = JSON.stringify({ email, password });
     const config = { headers: { "Content-Type": "Application/json" } };
@@ -41,10 +48,10 @@ export const login = async ({ email, password, setIsAuthenticated, setUserData }
 
     console.log("User logged in...");
 
-    loadUserProfile({ token: res?.data?.token, setIsAuthenticated, setUserData });
+    loadUserProfile({ token: res?.data?.token, setIsAuthenticated, setUserData, setAlertMessage });
   } catch (err) {
     updateSession({ isSession: false, setIsAuthenticated });
-    handleError("[Error during login]:", err);
+    handleError({ description: "[Error during login]:", err, setAlertMessage });
   }
 };
 
@@ -64,6 +71,7 @@ interface RegisterProps {
   address?: string;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   setUserData: React.Dispatch<any>;
+  setAlertMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const register = async ({
@@ -78,6 +86,7 @@ export const register = async ({
   address,
   setIsAuthenticated,
   setUserData,
+  setAlertMessage,
 }: RegisterProps) => {
   try {
     const data = JSON.stringify({
@@ -96,8 +105,6 @@ export const register = async ({
 
     const res = await axios.post("/api/users", data, config);
 
-    console.log("register", { res });
-
     updateSession({
       isSession: true,
       setIsAuthenticated,
@@ -107,11 +114,10 @@ export const register = async ({
     });
 
     console.log("New user registered...");
-
-    loadUserProfile({ token: res?.data?.token, setIsAuthenticated, setUserData });
+    loadUserProfile({ token: res?.data?.token, setIsAuthenticated, setUserData, setAlertMessage });
   } catch (err) {
     updateSession({ isSession: false, setIsAuthenticated, setUserData });
-    handleError("[Error during registration]:", err);
+    handleError({ description: "[Error during registration]:", err, setAlertMessage });
   }
 };
 
@@ -123,12 +129,14 @@ interface LoadUserProfileProps {
   token: string;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   setUserData: React.Dispatch<any>;
+  setAlertMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const loadUserProfile = async ({
   token,
   setIsAuthenticated,
   setUserData,
+  setAlertMessage,
 }: LoadUserProfileProps) => {
   try {
     if (localStorage.token) {
@@ -152,7 +160,7 @@ export const loadUserProfile = async ({
     console.log("User profile loaded...");
   } catch (err) {
     updateSession({ isSession: false, setIsAuthenticated, setUserData });
-    handleError("[Error loading profile]:", err);
+    handleError({ description: "[Error loading profile]:", err, setAlertMessage });
   }
 };
 
@@ -172,6 +180,7 @@ interface UpdateUserProfileProps {
   address: string;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   setUserData: React.Dispatch<any>;
+  setAlertMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const updateUserProfile = async ({
@@ -186,6 +195,7 @@ export const updateUserProfile = async ({
   address,
   setIsAuthenticated,
   setUserData,
+  setAlertMessage,
 }: UpdateUserProfileProps) => {
   try {
     const data = JSON.stringify({
@@ -203,12 +213,12 @@ export const updateUserProfile = async ({
 
     const res = await axios.post("/api/users/update", data, config);
 
-    loadUserProfile({ token: res?.data?.token, setIsAuthenticated, setUserData });
+    loadUserProfile({ token: res?.data?.token, setIsAuthenticated, setUserData, setAlertMessage });
 
     console.log("User profile updated...");
   } catch (err) {
     updateSession({ isSession: false, setIsAuthenticated, setUserData });
-    handleError("[Error loading profile]:", err);
+    handleError({ description: "[Error loading profile]:", err, setAlertMessage });
   }
 };
 
@@ -230,16 +240,24 @@ export const logoutUser = ({ setIsAuthenticated, setUserData }: LogoutUserProps)
  ************************** Helper Functions **************************
  */
 
-const handleError = (message: string, err: any) => {
+interface HandleErrorProps {
+  description: string;
+  err: any;
+  setAlertMessage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const handleError = ({ description, err, setAlertMessage }: HandleErrorProps) => {
   if (err.response) {
-    console.log(message, "status code", err.response.status);
-    console.log(message, "data", err.response.data);
-    console.log(message, "headers", err.response.headers);
+    const { status, data, headers } = err.response;
+    console.log(description, "status code", status);
+    console.log(description, "data", data);
+    console.log(description, "headers", headers);
+    setAlertMessage(data.message);
   } else if (err.request) {
-    console.log(message, "No response", err.request);
+    console.log(description, "No response", err.request);
   } else {
     // Something happened in setting up the request that triggered an err
-    console.log(message, "Error in request setup", err.message);
+    console.log(description, "Error in request setup", err.message);
   }
 };
 

@@ -67,6 +67,7 @@ export const EditProfile = () => {
         address,
         setIsAuthenticated,
         setUserData,
+        setAlertMessage,
       });
 
       navigate("/account");

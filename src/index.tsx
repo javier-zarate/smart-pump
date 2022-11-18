@@ -9,6 +9,7 @@ const styles = {
     backgroundAttachment: "fixed",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
+    minWidth: 440,
   },
 };
 
