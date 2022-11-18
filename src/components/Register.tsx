@@ -18,7 +18,7 @@ import {
 import { UserContext } from "../App";
 import { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { register } from "../utils";
+import { isEmailValid, register } from "../utils";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
@@ -48,16 +48,29 @@ export const Register = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showAddressForm, setShowAddressForm] = useState(false);
+  const [emailErrorText, setEmailErrorText] = useState("");
+  const [passwordErrorText, setPasswordErrorText] = useState("");
 
   const handleEmail = (value: string) => {
+    if (isEmailValid(email)) setEmailErrorText("Invalid Email Format");
+    else setEmailErrorText("");
+
     if (!!alertMessage) setAlertMessage("");
     setEmail(value);
+  };
+
+  const handlePassword = (value: string) => {
+    // error message will clear after 8th key press
+    if (password.length < 7) setPasswordErrorText("Password must be at least 8 characters long");
+    else setPasswordErrorText("");
+
+    if (!!alertMessage) setAlertMessage("");
+    setPassword(value);
   };
 
   const handleRegister = async () => {
     try {
       const formattedEmail = email.toLowerCase().trim();
-      const emailValidator = /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/;
 
       if (!firstName || !lastName || !email || !password) {
         setAlertMessage("Must provide first name, last name, email, and password");
@@ -65,7 +78,7 @@ export const Register = () => {
         return;
       }
 
-      if (!emailValidator.test(formattedEmail)) {
+      if (isEmailValid(email)) {
         setAlertMessage("Please enter a valid email.");
         setIsAlertSuccessType(false);
         return;
@@ -212,6 +225,8 @@ export const Register = () => {
                       label="email"
                       value={email}
                       onChange={(e) => handleEmail(e.target.value)}
+                      error={!!emailErrorText}
+                      helperText={emailErrorText}
                       size="small"
                       sx={{ ...styles.inputFields }}
                     />
@@ -219,7 +234,9 @@ export const Register = () => {
                     <TextField
                       label="Password"
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => handlePassword(e.target.value)}
+                      error={!!passwordErrorText}
+                      helperText={passwordErrorText}
                       size="small"
                       sx={{ ...styles.inputFields }}
                       type={showPassword ? "text" : "password"}

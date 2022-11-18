@@ -107,21 +107,11 @@ export const register = async ({
 
     console.log({ res });
 
-    // updateSession({
-    //   isSession: true,
-    //   setIsAuthenticated,
-    //   setUserData,
-    //   data: res?.data,
-    //   token: res?.data?.token,
-    // });
-
     if (res?.status === 200) {
       console.log("New user registered...");
     } else {
       return res;
     }
-
-    // loadUserProfile({ token: res?.data?.token, setIsAuthenticated, setUserData, setAlertMessage });
   } catch (err) {
     updateSession({ isSession: false, setIsAuthenticated, setUserData });
     handleError({ description: "[Error during registration]:", err, setAlertMessage });

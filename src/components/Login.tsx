@@ -17,7 +17,7 @@ import {
 import { UserContext } from "../App";
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { login } from "../utils";
+import { isEmailValid, login } from "../utils";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
@@ -35,23 +35,29 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [emailErrorText, setEmailErrorText] = useState("");
+  const [passwordErrorText, setPasswordErrorText] = useState("");
 
   const handleEmail = (value: string) => {
+    if (isEmailValid(email)) setEmailErrorText("Invalid Email Format");
+    else setEmailErrorText("");
+
     if (!!alertMessage) setAlertMessage("");
     setEmail(value);
   };
 
   const handlePassword = (value: string) => {
+    // error message will clear after 8th key press
+    if (password.length < 7) setPasswordErrorText("Password must be at least 8 characters long");
+    else setPasswordErrorText("");
+
     if (!!alertMessage) setAlertMessage("");
     setPassword(value);
   };
 
   const handleLogin = async () => {
     try {
-      const formattedEmail = email.toLowerCase().trim();
-      const emailValidator = /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/;
-
-      if (!emailValidator.test(formattedEmail)) {
+      if (isEmailValid) {
         setAlertMessage("Please enter a valid email.");
         setIsAlertSuccessType(false);
         return;
@@ -63,7 +69,15 @@ export const Login = () => {
         return;
       }
 
-      login({ email, password: password, setIsAuthenticated, setUserData, setAlertMessage });
+      const formattedEmail = email.toLowerCase().trim();
+
+      login({
+        email: formattedEmail,
+        password: password,
+        setIsAuthenticated,
+        setUserData,
+        setAlertMessage,
+      });
     } catch (err) {
       console.error("[Error login in]:", err);
     }
@@ -112,6 +126,8 @@ export const Login = () => {
                       label="Email"
                       value={email}
                       onChange={(e) => handleEmail(e.target.value)}
+                      error={!!emailErrorText}
+                      helperText={emailErrorText}
                       size="small"
                       sx={{ ...styles.inputFields }}
                     />
@@ -120,6 +136,8 @@ export const Login = () => {
                       label="Password"
                       value={password}
                       onChange={(e) => handlePassword(e.target.value)}
+                      error={!!passwordErrorText}
+                      helperText={passwordErrorText}
                       size="small"
                       sx={{ ...styles.inputFields }}
                       type={showPassword ? "text" : "password"}
