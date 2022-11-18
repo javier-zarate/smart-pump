@@ -1,3 +1,4 @@
+import React from "react";
 import {
   colors,
   List,
@@ -13,7 +14,7 @@ import {
   Box,
 } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { UserContext } from "App";
+import { UserContext } from "../App";
 import { useContext, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
@@ -95,7 +96,7 @@ export const Account = () => {
                         <HomeIcon />
                       </ListItemIcon>
                       <ListItemText primary="Address" />
-                      <Typography>{userData?.address}</Typography>
+                      <Typography display="block">{userData?.address}</Typography>
                     </ListItemButton>
                   )}
                   {!!userData?.company && (

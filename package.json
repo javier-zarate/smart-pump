@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "server": "nodemon --ignore \"db.json\" server.js",
+    "server": "nodemon --ignore \"db.json\" backend/server.js",
     "start": "concurrently \"npm run server \" \"npm run dev\"",
     "build": "tsc && vite build",
     "preview": "vite preview"

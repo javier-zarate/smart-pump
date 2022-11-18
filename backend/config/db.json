@@ -45,7 +45,7 @@
       "isActive": true,
       "balance": "$2,805,886.20",
       "picture": "https://robohash.org/$2a$05$EJo9tDb7aHzAYGiK20.pfOndA4CXAvHCcaBWqj96BnV9J/2kxAac6.png",
-      "age": "50",
+      "age": "45",
       "eyecolor": "brown",
       "name": {
         "first": "Bob",
@@ -78,6 +78,25 @@
       "phone": "1231231234",
       "address": "123 Spectre ct Casino Royal, AZ 00007",
       "eyeColor": "Green"
+    },
+    {
+      "_id": "a8ab5940-6a0f-4602-8f07-c82c147b154b",
+      "guid": "9a424acc-5982-438b-b4a8-936584d4434b",
+      "isActive": true,
+      "balance": "$1,630,785.94",
+      "picture": "https://robohash.org/$2a$05$ojjQjCaZeSP7ePTi.juxfelwHDG3Nua/FB62nqHUhnUaTcwA0c4yK.png",
+      "age": "10",
+      "eyecolor": "brown",
+      "name": {
+        "first": "Ash",
+        "last": "Ketchum"
+      },
+      "company": "Gatta Catch Em All",
+      "email": "ash@pokemon.com",
+      "salt": "$2a$05$ojjQjCaZeSP7ePTi.juxfe",
+      "password": "$2a$05$ojjQjCaZeSP7ePTi.juxfelwHDG3Nua/FB62nqHUhnUaTcwA0c4yK",
+      "phone": "1231231234",
+      "address": "1234 Pikachu Ln Pallet Town, Kanto 12345"
     }
   ]
 }

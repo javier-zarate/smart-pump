@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Grid,
   Card,
@@ -14,17 +15,16 @@ import {
   Switch,
   Alert,
 } from "@mui/material";
-import { UserContext } from "App";
+import { UserContext } from "../App";
 import { useContext, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { register } from "utils";
+import { Navigate } from "react-router-dom";
+import { register } from "../utils";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export const Register = () => {
   const { isAuthenticated, setIsAuthenticated, setUserData, alertMessage, setAlertMessage } =
     useContext(UserContext);
-  const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Button,
   Card,
@@ -9,10 +10,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { UserContext } from "App";
+import { UserContext } from "../App";
 import { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { updateUserProfile } from "utils";
+import { updateUserProfile } from "../utils";
 
 export const EditProfile = () => {
   const navigate = useNavigate();

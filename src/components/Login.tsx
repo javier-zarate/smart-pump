@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Alert,
   Box,
@@ -13,10 +14,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { UserContext } from "App";
+import { UserContext } from "../App";
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { login } from "utils";
+import { login } from "../utils";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
@@ -73,9 +74,13 @@ export const Login = () => {
               <CardContent>
                 <CardMedia
                   component="img"
-                  image={"/assets/logo.png"}
+                  image={"/src/assets/logo.png"}
                   height="200"
-                  sx={{ objectFit: "contain", marginBottom: "2em" }}
+                  sx={{
+                    objectFit: "contain",
+                    marginBottom: "2em",
+                    color: colors.grey["200"],
+                  }}
                 />
                 <Box
                   component="form"

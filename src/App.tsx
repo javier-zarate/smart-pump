@@ -1,6 +1,7 @@
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Alert, Grid } from "@mui/material";
-import { Account, EditProfile, Login, NavBar, Register } from "components";
+import { Grid } from "@mui/material";
+import { Account, EditProfile, Login, NavBar, NotFound, Register } from "./components";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -12,14 +13,13 @@ interface UserContextProps {
   alertMessage: string;
   setAlertMessage: React.Dispatch<React.SetStateAction<string>>;
 }
-export const UserContext = createContext<UserContextProps>(null);
+
+export const UserContext = createContext<UserContextProps>({} as UserContextProps);
 
 export const App = () => {
-  // const { css } = useClasses(null);
-
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.token);
   const [userData, setUserData] = useState(
-    !!localStorage.userData ? JSON.parse(localStorage.getItem("userData")) : null
+    !!localStorage.userData ? JSON.parse(localStorage.getItem("userData")!) : null
   );
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -53,6 +53,7 @@ export const App = () => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/account" element={<Account />} />
                 <Route path="/edit-profile" element={<EditProfile />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </Grid>
           </Grid>
