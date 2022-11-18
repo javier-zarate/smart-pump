@@ -3,17 +3,11 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   AppBar,
-  Box,
   colors,
   Container,
   Drawer,
   Grid,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -55,54 +49,6 @@ export const NavBar = () => {
     navigate("/login");
     setIsDrawerOpen(false);
   };
-
-  // const drawerOptions = (
-  //   <Box
-  //     sx={{ width: "auto", color: colors.grey["200"] }}
-  //     role="presentation"
-  //     onKeyDown={() => toggleDrawer()}
-  //   >
-  //     <List>
-  //       <ListItem disablePadding onClick={handleHomeClick}>
-  //         <ListItemButton>
-  //           <ListItemIcon>
-  //             <Icon.HomeIcon style={{ color: colors.grey["200"] }} />
-  //           </ListItemIcon>
-  //           <ListItemText primary="Home" />
-  //         </ListItemButton>
-  //       </ListItem>
-  //       {isAuthenticated ? (
-  //         <ListItem disablePadding onClick={handleLogout}>
-  //           <ListItemButton>
-  //             <ListItemIcon>
-  //               <Icon.LogoutIcon style={{ color: colors.grey["200"] }} />
-  //             </ListItemIcon>
-  //             <ListItemText primary="Logout" />
-  //           </ListItemButton>
-  //         </ListItem>
-  //       ) : (
-  //         <>
-  //           <ListItem disablePadding onClick={handleLogin}>
-  //             <ListItemButton>
-  //               <ListItemIcon>
-  //                 <Icon.LoginIcon style={{ color: colors.grey["200"] }} />
-  //               </ListItemIcon>
-  //               <ListItemText primary="Login" />
-  //             </ListItemButton>
-  //           </ListItem>
-  //           <ListItem disablePadding onClick={handleRegister}>
-  //             <ListItemButton>
-  //               <ListItemIcon>
-  //                 <Icon.PersonAddIcon style={{ color: colors.grey["200"] }} />
-  //               </ListItemIcon>
-  //               <ListItemText primary="Register" />
-  //             </ListItemButton>
-  //           </ListItem>
-  //         </>
-  //       )}
-  //     </List>
-  //   </Box>
-  // );
 
   const drawerOptionsProps = {
     toggleDrawer,
