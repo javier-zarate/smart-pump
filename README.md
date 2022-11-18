@@ -14,7 +14,11 @@ npm install
 
 # Run Project
 npm run start
+
+# Boom You are up and running.
 ```
+
+Navigate to [http://localhost:3000](http://localhost:3000)
 
 ### Important Notes
 
@@ -27,9 +31,6 @@ npm run start
 - On Linux there appear an error message with Vite but project still runs
 
 ---
-
-Boom You are up and running.
-Navigate to [http://localhost:3000](http://localhost:3000)
 
 ### Actions
 
