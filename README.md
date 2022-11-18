@@ -28,7 +28,7 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 
   - On subsequent runs project loads instantly
 
-- On Linux there appear an error message with Vite but project still runs
+- On Linux there appears to be an error message with [Vite](https://vitejs.dev/) on first run but project still runs
 
 ---
 
