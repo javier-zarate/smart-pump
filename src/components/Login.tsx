@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Alert,
   Box,
@@ -22,8 +22,15 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export const Login = () => {
-  const { isAuthenticated, setIsAuthenticated, setUserData, setAlertMessage, alertMessage } =
-    useContext(UserContext);
+  const {
+    isAuthenticated,
+    setIsAuthenticated,
+    setUserData,
+    setAlertMessage,
+    alertMessage,
+    isAlertSuccessType,
+    setIsAlertSuccessType,
+  } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,11 +53,13 @@ export const Login = () => {
 
       if (!emailValidator.test(formattedEmail)) {
         setAlertMessage("Please enter a valid email.");
+        setIsAlertSuccessType(false);
         return;
       }
 
       if (password.length < 8) {
         setAlertMessage("Password must be at least 8 characters long.");
+        setIsAlertSuccessType(false);
         return;
       }
 
@@ -91,7 +100,10 @@ export const Login = () => {
                 >
                   <div style={{ width: "15rem" }}>
                     {!!alertMessage && (
-                      <Alert severity="error" onClose={() => setAlertMessage("")}>
+                      <Alert
+                        severity={isAlertSuccessType ? "success" : "error"}
+                        onClose={() => setAlertMessage("")}
+                      >
                         {alertMessage}
                       </Alert>
                     )}

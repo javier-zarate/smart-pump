@@ -25,6 +25,7 @@ export const EditProfile = () => {
     setUserData,
     alertMessage,
     setAlertMessage,
+    setIsAlertSuccessType,
   } = useContext(UserContext);
 
   const [firstName, setFirstName] = useState(userData?.name?.first);
@@ -53,6 +54,8 @@ export const EditProfile = () => {
 
       if (!emailValidator.test(email)) {
         setAlertMessage("Please enter a valid email.");
+        setIsAlertSuccessType(false);
+
         return;
       }
 

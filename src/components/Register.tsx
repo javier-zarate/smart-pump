@@ -17,14 +17,21 @@ import {
 } from "@mui/material";
 import { UserContext } from "../App";
 import { useContext, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { register } from "../utils";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export const Register = () => {
-  const { isAuthenticated, setIsAuthenticated, setUserData, alertMessage, setAlertMessage } =
-    useContext(UserContext);
+  const {
+    isAuthenticated,
+    setIsAuthenticated,
+    setUserData,
+    alertMessage,
+    setAlertMessage,
+    setIsAlertSuccessType,
+  } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -54,16 +61,19 @@ export const Register = () => {
 
       if (!firstName || !lastName || !email || !password) {
         setAlertMessage("Must provide first name, last name, email, and password");
+        setIsAlertSuccessType(false);
         return;
       }
 
       if (!emailValidator.test(formattedEmail)) {
         setAlertMessage("Please enter a valid email.");
+        setIsAlertSuccessType(false);
         return;
       }
 
       if (password.length < 8) {
         setAlertMessage("Password must be at least 8 characters long.");
+        setIsAlertSuccessType(false);
         return;
       }
 
@@ -72,6 +82,7 @@ export const Register = () => {
       if (showAddressForm) {
         if (!street || !city || !state || !zipcode) {
           setAlertMessage("If adding address please fill out all inputs.");
+          setIsAlertSuccessType(false);
           return;
         }
         address = `${street} ${city}, ${state} ${zipcode}`;
@@ -91,6 +102,12 @@ export const Register = () => {
         setUserData,
         setAlertMessage,
       });
+
+      if (!alertMessage) {
+        setAlertMessage("Successfully Created Account!");
+        setIsAlertSuccessType(true);
+        navigate("/login");
+      }
     } catch (err) {
       console.error("[Error registering user]", err);
       console.log({ err });

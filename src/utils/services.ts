@@ -105,16 +105,23 @@ export const register = async ({
 
     const res = await axios.post("/api/users", data, config);
 
-    updateSession({
-      isSession: true,
-      setIsAuthenticated,
-      setUserData,
-      data: res?.data,
-      token: res?.data?.token,
-    });
+    console.log({ res });
 
-    console.log("New user registered...");
-    loadUserProfile({ token: res?.data?.token, setIsAuthenticated, setUserData, setAlertMessage });
+    // updateSession({
+    //   isSession: true,
+    //   setIsAuthenticated,
+    //   setUserData,
+    //   data: res?.data,
+    //   token: res?.data?.token,
+    // });
+
+    if (res?.status === 200) {
+      console.log("New user registered...");
+    } else {
+      return res;
+    }
+
+    // loadUserProfile({ token: res?.data?.token, setIsAuthenticated, setUserData, setAlertMessage });
   } catch (err) {
     updateSession({ isSession: false, setIsAuthenticated, setUserData });
     handleError({ description: "[Error during registration]:", err, setAlertMessage });

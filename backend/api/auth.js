@@ -5,6 +5,16 @@ import bcrypt from "bcryptjs";
 import { getConnection } from "../config/db.js";
 import { check, validationResult } from "express-validator";
 
+/**
+ * Authentication Endpoints
+ *
+ * Get User Data
+ * - GET api/auth
+ *
+ * Authenticate User
+ * - POST api/auth
+ */
+
 const router = express.Router();
 
 // GET Method

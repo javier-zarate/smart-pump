@@ -12,6 +12,8 @@ interface UserContextProps {
   setUserData: React.Dispatch<any>;
   alertMessage: string;
   setAlertMessage: React.Dispatch<React.SetStateAction<string>>;
+  isAlertSuccessType: boolean;
+  setIsAlertSuccessType: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const UserContext = createContext<UserContextProps>({} as UserContextProps);
@@ -22,6 +24,7 @@ export const App = () => {
     !!localStorage.userData ? JSON.parse(localStorage.getItem("userData")!) : null
   );
   const [alertMessage, setAlertMessage] = useState("");
+  const [isAlertSuccessType, setIsAlertSuccessType] = useState(false);
 
   useEffect(() => {
     if (localStorage.token) {
@@ -41,6 +44,8 @@ export const App = () => {
           setUserData,
           alertMessage,
           setAlertMessage,
+          isAlertSuccessType,
+          setIsAlertSuccessType,
         }}
       >
         <BrowserRouter>

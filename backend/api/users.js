@@ -5,6 +5,16 @@ import jwt from "jsonwebtoken";
 import { getConnection } from "../config/db.js";
 import { check, validationResult } from "express-validator";
 
+/**
+ * User Endpoints
+ *
+ * Register User
+ * - POST api/user
+ *
+ * Update User
+ * - POST api/users/update
+ */
+
 const router = express.Router();
 
 // POST method
@@ -70,16 +80,16 @@ router.post(
 
       await db.write();
 
-      const payload = {
-        user: {
-          id: id,
-        },
-      };
+      // const payload = {
+      //   user: {
+      //     id: id,
+      //   },
+      // };
 
-      jwt.sign(payload, "thisIsSecret", { expiresIn: "30m" }, (err, token) => {
-        if (err) throw err;
-        res.json({ token });
-      });
+      // jwt.sign(payload, "thisIsSecret", { expiresIn: "30m" }, (err, token) => {
+      //   if (err) throw err;
+      //   res.json({ token });
+      // });
     } catch (err) {
       res.status(500).send(`[Server Error]`, err);
     }

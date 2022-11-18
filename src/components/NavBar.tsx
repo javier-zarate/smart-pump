@@ -27,7 +27,13 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 export const NavBar = () => {
-  const { isAuthenticated, setIsAuthenticated, setUserData } = useContext(UserContext);
+  const {
+    isAuthenticated,
+    setIsAuthenticated,
+    setUserData,
+    setAlertMessage,
+    setIsAlertSuccessType,
+  } = useContext(UserContext);
 
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -52,7 +58,10 @@ export const NavBar = () => {
 
   const handleLogout = () => {
     logoutUser({ setIsAuthenticated, setUserData });
+    setAlertMessage("You have been successfully logged out.");
+    setIsAlertSuccessType(true);
     navigate("/login");
+    setIsDrawerOpen(false);
   };
 
   const drawerOptions = (

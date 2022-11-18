@@ -97,6 +97,82 @@
       "password": "$2a$05$ojjQjCaZeSP7ePTi.juxfelwHDG3Nua/FB62nqHUhnUaTcwA0c4yK",
       "phone": "1231231234",
       "address": "1234 Pikachu Ln Pallet Town, Kanto 12345"
+    },
+    {
+      "_id": "57830f64-b6aa-4398-854f-795387b353be",
+      "guid": "4942e142-acdf-4761-8c86-bb36a6cff12f",
+      "isActive": true,
+      "balance": "$8,059,528.90",
+      "picture": "https://robohash.org/$2a$05$IFvoDupyeCqmaerjyPnQJurnKCarCaNJanmpyizDDG01.uQii8KKq.png",
+      "age": "",
+      "eyecolor": "",
+      "name": {
+        "first": "bugs",
+        "last": "bunny"
+      },
+      "company": "",
+      "email": "bunny@ear.com",
+      "salt": "$2a$05$IFvoDupyeCqmaerjyPnQJu",
+      "password": "$2a$05$IFvoDupyeCqmaerjyPnQJurnKCarCaNJanmpyizDDG01.uQii8KKq",
+      "phone": "",
+      "address": ""
+    },
+    {
+      "_id": "ff6c723f-3d5d-4588-bda4-1c8e8a52a49e",
+      "guid": "a3133551-f445-4d86-886c-72e61d173286",
+      "isActive": true,
+      "balance": "$4,685,908.20",
+      "picture": "https://robohash.org/$2a$05$IQvhY2aMF1nUpJGIAZyrs.K92g/SWjXjSUK32jUsc1ktSyEzp0Gzu.png",
+      "age": "",
+      "eyecolor": "",
+      "name": {
+        "first": "Donald",
+        "last": "Duck"
+      },
+      "company": "",
+      "email": "duck@duck.com",
+      "salt": "$2a$05$IQvhY2aMF1nUpJGIAZyrs.",
+      "password": "$2a$05$IQvhY2aMF1nUpJGIAZyrs.K92g/SWjXjSUK32jUsc1ktSyEzp0Gzu",
+      "phone": "",
+      "address": ""
+    },
+    {
+      "_id": "a3ffdb17-58ba-41e5-a6ef-2676467175c6",
+      "guid": "3663e68f-5926-409f-b54a-c6ba1900d994",
+      "isActive": true,
+      "balance": "$3,981,305.29",
+      "picture": "https://robohash.org/$2a$05$jLNIXIRICitk7oh6Puzp9.5MVfSu5XqRnn2qkZxPihA9wd9ThCKRC.png",
+      "age": "",
+      "eyecolor": "",
+      "name": {
+        "first": "bugs",
+        "last": "bunny"
+      },
+      "company": "",
+      "email": "bunny@ears.com",
+      "salt": "$2a$05$jLNIXIRICitk7oh6Puzp9.",
+      "password": "$2a$05$jLNIXIRICitk7oh6Puzp9.5MVfSu5XqRnn2qkZxPihA9wd9ThCKRC",
+      "phone": "",
+      "address": ""
+    },
+    {
+      "_id": "638da5d5-3a72-400a-8451-b37f528022d9",
+      "guid": "a9e659ca-47b4-461d-9275-c99832488226",
+      "isActive": true,
+      "balance": "$665,440.55",
+      "picture": "https://robohash.org/$2a$05$39lSGQqFAu06OibXHVAVwu8JvhN7RB4.lf4Ik1nUwnZgcz9jpzk2y.png",
+      "age": "",
+      "eyecolor": "",
+      "name": {
+        "first": "test",
+        "last": "test"
+      },
+      "company": "",
+      "email": "testt@test.com",
+      "salt": "$2a$05$39lSGQqFAu06OibXHVAVwu",
+      "password": "$2a$05$39lSGQqFAu06OibXHVAVwu8JvhN7RB4.lf4Ik1nUwnZgcz9jpzk2y",
+      "phone": "",
+      "address": ""
     }
   ]
 }
