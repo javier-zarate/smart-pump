@@ -12,7 +12,7 @@ import {
 import { AlertContext, UserContext } from "contexts/contexts";
 import { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { updateUserProfile } from "../utils";
+import { updateUserProfile } from "../../utils";
 import { styles } from "styles";
 
 export const EditProfile = () => {

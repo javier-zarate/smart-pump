@@ -18,9 +18,10 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { logoutUser } from "../utils";
+import { logoutUser } from "../../utils";
 import { AlertContext, UserContext } from "contexts/contexts";
 import { Icon, styles } from "styles";
+import { DrawerOptions } from "./DrawerOptions";
 
 export const NavBar = () => {
   const { isAuthenticated, setIsAuthenticated, setUserData } = useContext(UserContext);
@@ -55,53 +56,62 @@ export const NavBar = () => {
     setIsDrawerOpen(false);
   };
 
-  const drawerOptions = (
-    <Box
-      sx={{ width: "auto", color: colors.grey["200"] }}
-      role="presentation"
-      onKeyDown={() => toggleDrawer()}
-    >
-      <List>
-        <ListItem disablePadding onClick={handleHomeClick}>
-          <ListItemButton>
-            <ListItemIcon>
-              <Icon.HomeIcon style={{ color: colors.grey["200"] }} />
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItemButton>
-        </ListItem>
-        {isAuthenticated ? (
-          <ListItem disablePadding onClick={handleLogout}>
-            <ListItemButton>
-              <ListItemIcon>
-                <Icon.LogoutIcon style={{ color: colors.grey["200"] }} />
-              </ListItemIcon>
-              <ListItemText primary="Logout" />
-            </ListItemButton>
-          </ListItem>
-        ) : (
-          <>
-            <ListItem disablePadding onClick={handleLogin}>
-              <ListItemButton>
-                <ListItemIcon>
-                  <Icon.LoginIcon style={{ color: colors.grey["200"] }} />
-                </ListItemIcon>
-                <ListItemText primary="Login" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding onClick={handleRegister}>
-              <ListItemButton>
-                <ListItemIcon>
-                  <Icon.PersonAddIcon style={{ color: colors.grey["200"] }} />
-                </ListItemIcon>
-                <ListItemText primary="Register" />
-              </ListItemButton>
-            </ListItem>
-          </>
-        )}
-      </List>
-    </Box>
-  );
+  // const drawerOptions = (
+  //   <Box
+  //     sx={{ width: "auto", color: colors.grey["200"] }}
+  //     role="presentation"
+  //     onKeyDown={() => toggleDrawer()}
+  //   >
+  //     <List>
+  //       <ListItem disablePadding onClick={handleHomeClick}>
+  //         <ListItemButton>
+  //           <ListItemIcon>
+  //             <Icon.HomeIcon style={{ color: colors.grey["200"] }} />
+  //           </ListItemIcon>
+  //           <ListItemText primary="Home" />
+  //         </ListItemButton>
+  //       </ListItem>
+  //       {isAuthenticated ? (
+  //         <ListItem disablePadding onClick={handleLogout}>
+  //           <ListItemButton>
+  //             <ListItemIcon>
+  //               <Icon.LogoutIcon style={{ color: colors.grey["200"] }} />
+  //             </ListItemIcon>
+  //             <ListItemText primary="Logout" />
+  //           </ListItemButton>
+  //         </ListItem>
+  //       ) : (
+  //         <>
+  //           <ListItem disablePadding onClick={handleLogin}>
+  //             <ListItemButton>
+  //               <ListItemIcon>
+  //                 <Icon.LoginIcon style={{ color: colors.grey["200"] }} />
+  //               </ListItemIcon>
+  //               <ListItemText primary="Login" />
+  //             </ListItemButton>
+  //           </ListItem>
+  //           <ListItem disablePadding onClick={handleRegister}>
+  //             <ListItemButton>
+  //               <ListItemIcon>
+  //                 <Icon.PersonAddIcon style={{ color: colors.grey["200"] }} />
+  //               </ListItemIcon>
+  //               <ListItemText primary="Register" />
+  //             </ListItemButton>
+  //           </ListItem>
+  //         </>
+  //       )}
+  //     </List>
+  //   </Box>
+  // );
+
+  const drawerOptionsProps = {
+    toggleDrawer,
+    handleHomeClick,
+    handleLogout,
+    handleLogin,
+    handleRegister,
+    isAuthenticated,
+  };
 
   return (
     <AppBar position="fixed" sx={{ backgroundColor: colors.blueGrey["900"], marginBottom: "2em" }}>
@@ -127,7 +137,7 @@ export const NavBar = () => {
               elevation={0}
               variant="persistent"
             >
-              {drawerOptions}
+              <DrawerOptions {...drawerOptionsProps} />
             </Drawer>
           </Container>
         </Grid>
