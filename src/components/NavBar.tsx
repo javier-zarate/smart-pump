@@ -25,6 +25,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { styles } from "styles/styles";
 
 export const NavBar = () => {
   const {
@@ -143,11 +144,4 @@ export const NavBar = () => {
       </Grid>
     </AppBar>
   );
-};
-
-const styles = {
-  drawer: {
-    marginTop: "3.3rem",
-    backgroundColor: colors.blueGrey["900"],
-  },
 };

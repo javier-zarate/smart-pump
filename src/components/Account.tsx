@@ -26,6 +26,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Navigate, useNavigate } from "react-router-dom";
+import { styles } from "styles/styles";
 
 export const Account = () => {
   const navigate = useNavigate();
@@ -157,21 +158,4 @@ export const Account = () => {
       )}
     </>
   );
-};
-
-const styles = {
-  inputFields: {
-    marginTop: "1em",
-    marginBottom: "1em",
-    backgroundColor: "white",
-  },
-  mainCard: {
-    marginTop: "5em",
-    maxWidth: 800,
-    width: "100%",
-  },
-  innerCard: {
-    border: `2px solid ${colors.grey["400"]}`,
-    backgroundColor: colors.grey["100"],
-  },
 };

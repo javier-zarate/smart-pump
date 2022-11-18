@@ -97,6 +97,25 @@
       "password": "$2a$05$ojjQjCaZeSP7ePTi.juxfelwHDG3Nua/FB62nqHUhnUaTcwA0c4yK",
       "phone": "1231231234",
       "address": "1234 Pikachu Ln Pallet Town, Kanto 12345"
+    },
+    {
+      "_id": "6ff9f26e-bd69-4868-9457-e68035529727",
+      "guid": "296f2b89-559b-474e-8dbf-25c894ab8713",
+      "isActive": true,
+      "balance": "$8,434,709.5",
+      "picture": "https://robohash.org/$2a$05$5M9iO.BxWADsyRPBbSl98.BL41AT82r3LVOUDI23/IilMWL7FdDQG.png",
+      "age": "",
+      "eyecolor": "",
+      "name": {
+        "first": "test",
+        "last": "test"
+      },
+      "company": "",
+      "email": "javier123@email.com",
+      "salt": "$2a$05$5M9iO.BxWADsyRPBbSl98.",
+      "password": "$2a$05$5M9iO.BxWADsyRPBbSl98.BL41AT82r3LVOUDI23/IilMWL7FdDQG",
+      "phone": "",
+      "address": ""
     }
   ]
 }

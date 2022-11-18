@@ -3,7 +3,6 @@ import {
   Grid,
   Card,
   CardContent,
-  colors,
   IconButton,
   InputAdornment,
   InputLabel,
@@ -21,6 +20,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { isEmailValid, register } from "../utils";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { styles } from "styles/styles";
 
 export const Register = () => {
   const {
@@ -203,18 +203,18 @@ export const Register = () => {
                   sx={{ "& .MuiTextField-root": { width: "30ch" } }}
                 >
                   <Grid item>
-                    <InputLabel>First name</InputLabel>
+                    <InputLabel>*First name</InputLabel>
                     <TextField
-                      label="First Name"
+                      label="*First Name"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       size="small"
                       sx={{ ...styles.inputFields }}
                     />
-                    <InputLabel>Last Name</InputLabel>
+                    <InputLabel>*Last Name</InputLabel>
 
                     <TextField
-                      label="Last Name"
+                      label="*Last Name"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       size="small"
@@ -222,7 +222,7 @@ export const Register = () => {
                     />
                     <InputLabel>Email</InputLabel>
                     <TextField
-                      label="email"
+                      label="*Email"
                       value={email}
                       onChange={(e) => handleEmail(e.target.value)}
                       error={!!emailErrorText}
@@ -230,9 +230,9 @@ export const Register = () => {
                       size="small"
                       sx={{ ...styles.inputFields }}
                     />
-                    <InputLabel>Password</InputLabel>
+                    <InputLabel>*Password</InputLabel>
                     <TextField
-                      label="Password"
+                      label="*Password"
                       value={password}
                       onChange={(e) => handlePassword(e.target.value)}
                       error={!!passwordErrorText}
@@ -316,20 +316,4 @@ export const Register = () => {
       )}
     </>
   );
-};
-
-const styles = {
-  inputFields: {
-    marginY: "1em",
-    backgroundColor: "white",
-  },
-  mainCard: {
-    marginTop: "5em",
-    maxWidth: 800,
-    width: "100%",
-  },
-  innerCard: {
-    border: `2px solid ${colors.grey["400"]}`,
-    backgroundColor: colors.grey["100"],
-  },
 };

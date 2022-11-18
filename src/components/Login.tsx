@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Alert,
   Box,
@@ -20,6 +20,7 @@ import { Navigate } from "react-router-dom";
 import { isEmailValid, login } from "../utils";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { styles } from "styles/styles";
 
 export const Login = () => {
   const {
@@ -57,7 +58,7 @@ export const Login = () => {
 
   const handleLogin = async () => {
     try {
-      if (isEmailValid) {
+      if (isEmailValid(email)) {
         setAlertMessage("Please enter a valid email.");
         setIsAlertSuccessType(false);
         return;
@@ -169,21 +170,4 @@ export const Login = () => {
       )}
     </>
   );
-};
-
-const styles = {
-  inputFields: {
-    marginTop: "1em",
-    marginBottom: "1em",
-    backgroundColor: "white",
-  },
-  mainCard: {
-    marginTop: "5em",
-    maxWidth: 800,
-    width: "100%",
-  },
-  innerCard: {
-    border: `2px solid ${colors.grey["400"]}`,
-    backgroundColor: colors.grey["100"],
-  },
 };

@@ -14,6 +14,7 @@ import { UserContext } from "../App";
 import { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { updateUserProfile } from "../utils";
+import { styles } from "styles/styles";
 
 export const EditProfile = () => {
   const navigate = useNavigate();
@@ -202,20 +203,4 @@ export const EditProfile = () => {
       )}
     </>
   );
-};
-
-const styles = {
-  inputFields: {
-    marginY: "1em",
-    backgroundColor: "white",
-  },
-  mainCard: {
-    marginTop: "5em",
-    maxWidth: 800,
-    width: "100%",
-  },
-  innerCard: {
-    border: `2px solid ${colors.grey["400"]}`,
-    backgroundColor: colors.grey["100"],
-  },
 };
